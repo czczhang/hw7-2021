@@ -109,11 +109,11 @@ var documentStub = createDocumentStub(elements);
 
 videoApp.setupPlayer(documentStub);
 
-assertEqual(elements.volume.textContent, "100%", "Volume display should initialize.");
 assertEqual(video.volume, 1, "Video volume should initialize to full.");
 
 elements.play.click();
 assertEqual(video.paused, false, "Play button should start the video.");
+assertEqual(elements.volume.textContent, "100", "Play button should display the current volume as a whole number.");
 
 elements.pause.click();
 assertEqual(video.paused, true, "Pause button should pause the video.");
@@ -139,7 +139,7 @@ assertEqual(elements.mute.textContent, "Mute", "Mute button text should reset.")
 elements.slider.value = "30";
 elements.slider.input();
 assertEqual(video.volume, 0.3, "Slider should update the video volume.");
-assertEqual(elements.volume.textContent, "30%", "Slider should update the volume text.");
+assertEqual(elements.volume.textContent, "30", "Slider should update the volume text.");
 
 elements.vintage.click();
 assert(video.className.indexOf("oldSchool") !== -1, "Vintage button should add the oldSchool class.");

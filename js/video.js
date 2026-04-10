@@ -1,4 +1,4 @@
-(function(globalScope) {
+	(function(globalScope) {
 	var videoApp = {
 		setupPlayer: function(doc) {
 			var video = doc.getElementById("player1");
@@ -13,13 +13,18 @@
 			var vintageButton = doc.getElementById("vintage");
 			var originalButton = doc.getElementById("orig");
 
+			function updateVolumeDisplay() {
+				volumeDisplay.textContent = String(video.volume * 100);
+			}
+
 			video.volume = 1;
 			slider.value = "100";
-			volumeDisplay.textContent = "100%";
+			updateVolumeDisplay();
 			muteButton.textContent = video.muted ? "Unmute" : "Mute";
 
 			playButton.addEventListener("click", function() {
 				video.play();
+				updateVolumeDisplay();
 				console.log("Play Video");
 			});
 
@@ -56,7 +61,7 @@
 
 			slider.addEventListener("input", function() {
 				video.volume = parseInt(slider.value, 10) / 100;
-				volumeDisplay.textContent = slider.value + "%";
+				updateVolumeDisplay();
 				console.log("Volume is " + video.volume);
 			});
 
